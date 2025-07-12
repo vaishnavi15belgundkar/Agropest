@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protect Your Onion Harvest - Agropest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grain" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="15" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="5" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="12" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="8" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="20" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 18px;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 3rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        /* Blog Content */
+        .blog-container {
+            background: white;
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #4CAF50;
+        }
+
+        .blog-container h2 {
+            color: #2e7d32;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .blog-container h3 {
+            color: #4CAF50;
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e8f5e8;
+        }
+
+        .blog-container p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #2e7d32;
+            font-weight: 600;
+            background: linear-gradient(120deg, #e8f5e8 0%, #e8f5e8 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .list {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .list li {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .list li::marker {
+            color: #4CAF50;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+            padding: 1.5rem;
+            border-left: 4px solid #4CAF50;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Solutions Table */
+        .solutions-section {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .solutions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .solutions-table th {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .solutions-table td {
+            padding: 2rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .solutions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: #2e7d32;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .crop-image {
+            width: 100%;
+            max-width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .crop-image:hover {
+            transform: scale(1.02);
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .back-button {
+                position: static;
+                margin: 1rem;
+                display: inline-flex;
+            }
+
+            .blog-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .video-container iframe {
+                height: 300px;
+            }
+
+            .solutions-table th,
+            .solutions-table td {
+                padding: 1rem;
+            }
+
+            .products {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .blog-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .video-container iframe {
+                height: 250px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation for images */
+        .crop-image,
+        .product-image {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../crops.php" class="back-button">Back to Crops</a>
+        <div class="container">
+            <h1>🧅 Protect Your Onion Crops</h1>
+            <p>Expert guidance by Agropest | January 01, 2025</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="video-section">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/tx5-6k1y874?si=84Ne1ghkciRotrPI" 
+                        title="Onion Crop Protection Guide" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <section class="blog-container">
+                <h2>Onion: A Versatile and Essential Crop</h2>
+                <p>
+                    <strong>Onion (Allium cepa L.)</strong>, commonly known as the bulb onion, is a widely cultivated vegetable that plays a crucial role in global cuisine and agriculture. India ranks as the <span class="highlight">second-largest</span> onion producer worldwide, with onions being an integral part of Indian cooking.
+                </p>
+                
+                <h3>🌱 Cultivation and Growth</h3>
+                <p>
+                    Onions are <span class="highlight">biennial plants</span> but are usually grown as annuals. They require well-drained, sandy loam soil with proper irrigation for optimal growth. 
+                    The crop matures in approximately <span class="highlight">80 to 150 days</span>, depending on the variety and environmental conditions.
+                </p>
+            
+                <h3>🍽 Culinary Uses</h3>
+                <p>Onions are used in a variety of ways, including:</p>
+                <ul class="list">
+                    <li>Raw in salads for a crisp and pungent taste</li>
+                    <li>As a base ingredient in curries, stews, and soups</li>
+                    <li>Caramelized to add a sweet and rich flavor to dishes</li>
+                    <li>Pickled or used in chutneys for tangy condiments</li>
+                </ul>
+            
+                <h3>💪 Health Benefits</h3>
+                <p>Onions are packed with essential nutrients and compounds that benefit health:</p>
+                <ul class="list">
+                    <li><span class="highlight">Rich in antioxidants</span>: Contains flavonoids and vitamin C, which boost immunity</li>
+                    <li><span class="highlight">Heart health</span>: Helps reduce cholesterol and blood pressure</li>
+                    <li><span class="highlight">Anti-inflammatory properties</span>: Beneficial for people with arthritis and other inflammatory conditions</li>
+                    <li><span class="highlight">Improves digestion</span>: Rich in prebiotic fiber, which supports gut health</li>
+                </ul>
+            
+                <h3>📜 Fun Fact</h3>
+                <p class="quote">
+                    💡 Did you know? Ancient Egyptians considered onions a symbol of eternity and even placed them in tombs of pharaohs!
+                </p>
+            
+                <h3>🌎 Global Impact</h3>
+                <p>
+                    Onions are cultivated in various climates, from temperate to tropical regions. Major producing countries include <span class="highlight">India, China, and the United States</span>. 
+                    They are not only an essential part of global cuisine but also contribute significantly to the economy.
+                </p>
+                
+                <h3>🌿 Recommended Crop Solutions</h3>
+                <p>
+                    To ensure a healthy and high-yield onion crop, it is essential to protect it from pests, diseases, and nutrient deficiencies. 
+                    Below are the recommended products, including insecticides, fungicides, and pesticides, that help maintain crop quality and productivity.
+                </p>
+            </section>
+
+            <section class="solutions-section">
+                <table class="solutions-table">
+                    <thead>
+                        <tr>
+                            <th>🐛 Pests & Diseases</th>
+                            <th>🛡️ Recommended Solutions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3 class="section-title">Weeds Control</h3>
+                                <div class="image-container">
+                                    <img src="../Images/Onion_crop.jpg" alt="Onion crop with weeds" class="crop-image">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="products">
+                                    <img src="../Images/Onion_product.png" alt="Weed control product" class="product-image">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3 class="section-title">Better Crop Health & Yield</h3>
+                                <div class="image-container">
+                                    <img src="../Images/Onion_crop2.jpg" alt="Healthy onion crop" class="crop-image">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="products">
+                                    <img src="../Images/Onion_product2.png" alt="Crop health product 1" class="product-image">
+                                    <img src="../Images/Onion_product3.png" alt="Crop health product 2" class="product-image">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Agropest. All Rights Reserved. | Protecting crops, nurturing growth 🌱</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading animation delay for images
+            const images = document.querySelectorAll('.crop-image, .product-image');
+            images.forEach((img, index) => {
+                img.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add hover effect for product images
+            const productImages = document.querySelectorAll('.product-image');
+            productImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
